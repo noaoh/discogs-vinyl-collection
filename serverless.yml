@@ -1,0 +1,21 @@
+org: noaoh
+app: discogs-vinyl-collection
+service: discogs-vinyl-collection
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  environment:
+    DISCOGS_URL: 'https://api.discogs.com'
+    DISCOGS_TOKEN: ${param:discogs-token}
+    DISCOGS_USER: ${param:discogs-user}
+    USER_AGENT: 'NoahHoltPersonalWebsite'
+
+functions:
+  vinylCollection:
+    handler: handler.vinylCollection
+    events:
+      - httpApi:
+          path: /vinyl-collection
+          method: get
