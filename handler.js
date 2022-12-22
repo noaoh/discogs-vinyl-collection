@@ -7,10 +7,19 @@ const parseVinylCollection = require('./parseVinylCollection');
 const app = new Koa();
 const router = new Router();
 
+const {
+  LOCAL_URL: localUrl,
+  GITHUB_URL: githubUrl,
+} = process.env;
+
 router.get('/', async (ctx) => {
   try {
     const vinylCollection = await getVinylCollection();
     const parsedVinylCollection = parseVinylCollection(vinylCollection);
+    const origin = ctx.req.headers.origin
+    if (origin === localUrl || origin === githubUrl) {
+      ctx.res.setHeader('Access-Control-Allow-Origin', origin);
+    }
     ctx.body = parsedVinylCollection;
     ctx.status = 200;
   } catch (err) {

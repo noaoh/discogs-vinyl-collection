@@ -11,6 +11,8 @@ provider:
     DISCOGS_TOKEN: ${param:discogs-token}
     DISCOGS_USER: ${param:discogs-user}
     USER_AGENT: 'NoahHoltPersonalWebsite'
+    LOCAL_URL: ${param:local-url}
+    GITHUB_URL: ${param:github-url}
 
 functions:
   vinylCollection:
