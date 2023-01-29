@@ -11,10 +11,10 @@ const parseVinylCollection = (vinylCollection) => {
         const { date_added: dateAdded } = release;
         const { title, thumb, artists } = release.basic_information;
         let artistsArr = artists
-            .map((artist) => censor.clean(artist))
+            .map((artist) => censor.clean(artist.name))
             .map((artist) => artist === 'Duster (2)' ? 'Duster' : artist);
-        if (artistsArr.includes(''))
         artistsArr.sort((a, b) => a.localeCompare(b));
+
         return {
             dateAdded,
             album: censor.clean(title),
