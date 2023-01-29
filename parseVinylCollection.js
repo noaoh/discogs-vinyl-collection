@@ -1,6 +1,6 @@
 const Filter = require('bad-words');
 
-const parseVinylCollection = async (vinylCollection) => {
+const parseVinylCollection = (vinylCollection) => {
     const censor = new Filter();
 
     if (!vinylCollection.releases) {
