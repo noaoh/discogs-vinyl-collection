@@ -16,6 +16,7 @@ const parseVinylCollection = (vinylCollection) => {
             album: censor.clean(title),
             artists: artistsArr,
             thumbnail: thumb,
+            needsBlur: title === "The Money Store",
         }
     });
 };
