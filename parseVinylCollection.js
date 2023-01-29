@@ -10,7 +10,10 @@ const parseVinylCollection = (vinylCollection) => {
     return vinylCollection.releases.map((release) => {
         const { date_added: dateAdded } = release;
         const { title, thumb, artists } = release.basic_information;
-        let artistsArr = artists.map((artist) => censor.clean(artist.name));
+        let artistsArr = artists
+            .map((artist) => censor.clean(artist.name))
+            .map((artist) => artist.name === 'Duster (2)' ? { ...artist, name: 'Duster' } : artist);
+        artistsArr.sort((a, b) => a.localeCompare(b));
         return {
             dateAdded,
             album: censor.clean(title),
