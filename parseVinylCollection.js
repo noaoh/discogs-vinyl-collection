@@ -1,4 +1,8 @@
-const parseVinylCollection = (vinylCollection) => {
+const Filter = require('bad-words');
+
+const parseVinylCollection = async (vinylCollection) => {
+    const censor = new Filter();
+
     if (!vinylCollection.releases) {
         return [];
     }
@@ -6,10 +10,10 @@ const parseVinylCollection = (vinylCollection) => {
     return vinylCollection.releases.map((release) => {
         const { date_added: dateAdded } = release;
         const { title, thumb, artists } = release.basic_information;
-        let artistsArr = artists.map((artist) => artist.name);
+        let artistsArr = artists.map((artist) => censor.clean(artist.name));
         return {
             dateAdded,
-            album: title,
+            album: censor.clean(title),
             artists: artistsArr,
             thumbnail: thumb,
         }
