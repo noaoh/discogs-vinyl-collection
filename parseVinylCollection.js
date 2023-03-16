@@ -1,4 +1,5 @@
 const Filter = require('bad-words');
+const { v4: uuid } = require('uuid');
 
 const parseVinylCollection = (vinylCollection) => {
     const censor = new Filter();
@@ -16,11 +17,14 @@ const parseVinylCollection = (vinylCollection) => {
         artistsArr.sort((a, b) => a.localeCompare(b));
 
         return {
-            dateAdded,
-            album: censor.clean(title),
-            artists: artistsArr,
-            thumbnail: thumb,
-            needsBlur: title === "The Money Store",
+            id: uuid(),
+            item: {
+                dateAdded,
+                album: censor.clean(title),
+                artists: artistsArr,
+                thumbnail: thumb,
+                needsBlur: title === "The Money Store",
+            }
         }
     });
 };

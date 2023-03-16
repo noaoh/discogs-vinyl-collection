@@ -23,6 +23,7 @@
     "bad-words": "^3.0.4",
     "koa": "^2.14.1",
     "node-fetch": "^2.6.7",
-    "serverless-http": "^3.1.0"
+    "serverless-http": "^3.1.0",
+    "uuid": "^9.0.0"
   }
 }
